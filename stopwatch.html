@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: blueviolet;
+            text-align: center;
+            justify-content: center;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container{
+            font-size: 100px;
+            font-weight: bolder;
+            background-color: gold;
+            padding: 10px;
+            text-align: center;
+            border-radius: 100px;
+            border: solid black;
+        }
+        button{
+            font-size: 30px;
+            margin: 20px;
+            padding: 10px;
+            color: mediumvioletred;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="watch">00:00:00</div>
+    </div>
+    <div>
+        <button onclick="starttimer()">Start</button>
+        <button onclick="stoptimer()">Stop</button>
+        <button onclick="resettimer()">Reset</button>
+    </div>
+    <script>
+        let stopwatch=document.getElementById("watch");
+        let sec=0;
+        let min=0;
+        let hr=0;
+
+        function starttimer(){
+            setInterval(() => {
+                if(sec<59)
+                {
+                    sec++;
+                }
+                else if(min>=59)
+                {
+                    hr++;
+                    min=0;
+                }
+                else
+                {
+                    sec=0;
+                    min++;
+                }
+                stopwatch.innerHTML=hr+":"+min+":"+sec;
+
+                let x=sec.toString().padStart(2,"0");
+                let y=min.toString().padStart(2,"0");
+                let z=hr.toString().padStart(2,"0");
+
+                stopwatch.innerHTML=z+":"+y+":"+x;
+            }, 1000);
+        }
+        function stoptimer(){
+            clearInterval(r);
+        }
+        function resettimer(){
+            sec=0;
+            min=0;
+            hr=0;
+            clearInterval(r);
+            let a=sec.toString().padStart(2,"0");
+            let b=min.toString().padStart(2,"0");
+            let c=hr.toString().padStart(2,"0");
+            stopwatch.innerHTML=a+":"+b+":"+c;
+        }
+    </script>
+</body>
+</html>
